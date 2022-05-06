@@ -2,9 +2,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="32dp"
+    android:padding="16dp"
     tools:context=".newParticipantsDialogFragment">
 
         <LinearLayout
@@ -32,7 +33,7 @@
                 android:inputType="textPersonName" />
 
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/linearLayout2"
                 android:layout_height="fill_parent"
@@ -43,7 +44,7 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/privacyDialogCancel"
+                    android:id="@+id/AddPDialogCancel"
                     android:text="@string/AddPDialogCancel"
                     android:textStyle="normal" />
 
@@ -51,7 +52,7 @@
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/privacyDialogConfirm"
+                    android:id="@+id/AddPDialogDialogConfirm"
                     android:text="@string/AddPDialogAdd"
                     android:textStyle="normal" />
 
