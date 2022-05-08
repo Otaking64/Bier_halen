@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 
 class newParticipantsDialogFragment : DialogFragment() {
@@ -21,14 +22,16 @@ class newParticipantsDialogFragment : DialogFragment() {
         val cancelBtn = view.findViewById<Button>(R.id.AddPDialogCancel)
         val confirmBtn = view.findViewById<Button>(R.id.AddPDialogDialogConfirm)
 
-
-
         cancelBtn.setOnClickListener {
             dismiss()
         }
 
         confirmBtn.setOnClickListener {
-            addNameToList(participantName.text.toString())
+            if (participantName.text.toString() != "") {
+                addNameToList(participantName.text.toString())
+            }else{
+                Toast.makeText(context, "Er moet een naam ingevuld worden.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return view
@@ -41,11 +44,10 @@ class newParticipantsDialogFragment : DialogFragment() {
             var sql = "CREATE TABLE IF NOT EXISTS names(_id INTEGER PRIMARY KEY NOT NULL, name TEXT)"
             database.execSQL(sql)
 
-
             val values = ContentValues().apply {
                 put("name", name)
             }
-            val generatedId = database?.insert("names", null, values)
+            val generatedId = database.insert("names", null, values)
             val query = database.rawQuery("SELECT * FROM names", null)
 
             query.use {
