@@ -51,7 +51,7 @@ class newParticipantsDialogFragment : DialogFragment() {
             query.use {
                 while(it.moveToNext()){
                     //cycle through data in database
-                    with(query){
+                    with(it){
                         val id = getLong(0)
                         val name = getString(1)
                         val result = "ID: $id name: $name"
