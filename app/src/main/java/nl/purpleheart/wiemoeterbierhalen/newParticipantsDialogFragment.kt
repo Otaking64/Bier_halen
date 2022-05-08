@@ -1,6 +1,9 @@
 package nl.purpleheart.wiemoeterbierhalen
 
+import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +21,8 @@ class newParticipantsDialogFragment : DialogFragment() {
         val cancelBtn = view.findViewById<Button>(R.id.AddPDialogCancel)
         val confirmBtn = view.findViewById<Button>(R.id.AddPDialogDialogConfirm)
 
+
+
         cancelBtn.setOnClickListener {
             dismiss()
         }
@@ -30,9 +35,19 @@ class newParticipantsDialogFragment : DialogFragment() {
     }
 
     private fun addNameToList(name: String) {
-        //get list from cache
-        //add name to list
-        //save list to cache
+        val database = context?.openOrCreateDatabase("sqlite-cNames.db", Context.MODE_ENABLE_WRITE_AHEAD_LOGGING, null)
+
+        if (database != null) {
+            var sql = "CREATE TABLE names(_id INTEGER PRIMARY KEY NOT NULL, name TEXT)"
+            database.execSQL(sql)
+
+
+            val values = ContentValues().apply {
+                put("name", name)
+            }
+            val generatedId = database?.insert("sqlite-cNames.db", null, values)
+            Log.d("TEST", "TEST" + generatedId)
+        }
 
         dismiss()
     }

@@ -5,13 +5,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="32dp"
-    android:padding="16dp"
+
     tools:context=".newParticipantsDialogFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:padding="16dp"
             tools:ignore="UselessParent">
 
             <TextView
@@ -48,12 +49,11 @@
                     android:id="@+id/AddPDialogCancel"
                     android:text="@string/AddPDialogCancel"
                     android:textStyle="normal" />
-
                 <Button
-                    android:layout_weight="1"
+                    android:id="@+id/AddPDialogDialogConfirm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/AddPDialogDialogConfirm"
+                    android:layout_weight="1"
                     android:text="@string/AddPDialogAdd"
                     android:textStyle="normal" />
 
