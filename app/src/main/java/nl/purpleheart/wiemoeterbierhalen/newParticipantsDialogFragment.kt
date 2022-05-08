@@ -34,19 +34,34 @@ class newParticipantsDialogFragment : DialogFragment() {
         return view
     }
 
-    private fun addNameToList(name: String) {
-        val database = context?.openOrCreateDatabase("sqlite-cNames.db", Context.MODE_ENABLE_WRITE_AHEAD_LOGGING, null)
+    private fun addNameToList(name: String) {//TODO all database stuff should really be moved to a seperate class
+        val database = context?.openOrCreateDatabase("cNames.db", Context.MODE_ENABLE_WRITE_AHEAD_LOGGING, null)
 
         if (database != null) {
-            var sql = "CREATE TABLE names(_id INTEGER PRIMARY KEY NOT NULL, name TEXT)"
+            var sql = "CREATE TABLE IF NOT EXISTS names(_id INTEGER PRIMARY KEY NOT NULL, name TEXT)"
             database.execSQL(sql)
 
 
             val values = ContentValues().apply {
                 put("name", name)
             }
-            val generatedId = database?.insert("sqlite-cNames.db", null, values)
-            Log.d("TEST", "TEST" + generatedId)
+            val generatedId = database?.insert("names", null, values)
+            val query = database.rawQuery("SELECT * FROM names", null)
+
+            query.use {
+                while(it.moveToNext()){
+                    //cycle through data in database
+                    with(query){
+                        val id = getLong(0)
+                        val name = getString(1)
+                        val result = "ID: $id name: $name"
+                        Log.d("TEST", result)
+                    }
+                }
+            }
+            database.close()
+
+            Log.d("TEST", "TEST " + generatedId)
         }
 
         dismiss()
