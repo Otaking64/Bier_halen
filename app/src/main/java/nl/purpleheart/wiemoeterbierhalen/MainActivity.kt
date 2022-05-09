@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-            R.id.delete -> {
+            R.id.delete -> {//TODO remove records from database and reload recyclerview
                 Toast.makeText(baseContext, "Delete button pressed", Toast.LENGTH_SHORT).show()
                 true
             }
